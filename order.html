@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Order Confirmation</h1>
+    </header>
+
+    <main>
+        <section id="order-section">
+            <h2>Complete Your Order</h2>
+            <form id="orderDetailsForm" onsubmit="handleOrderSubmit(event)">
+
+                <!-- User Name -->
+                <label for="userName">Your Name:</label>
+                <input type="text" id="userName" name="userName" placeholder="Enter your name" required>
+
+                <!-- User Address -->
+                <label for="address">Your Address:</label>
+                <textarea id="address" name="address" placeholder="Enter your address" rows="3" required></textarea>
+
+                <!-- Product Name (Read-Only) -->
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" readonly>
+
+                <!-- Price (Read-Only) -->
+                <label for="price">Price (Rs):</label>
+                <input type="number" id="price" name="price" readonly>
+
+                <!-- Quantity -->
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+                <!-- Total Price (Read-Only) -->
+                <label for="totalPrice">Total Price (Rs):</label>
+                <input type="number" id="totalPrice" name="totalPrice" readonly>
+
+                <button type="submit">Confirm Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Extract URL parameters and prefill the form
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get('product');
+        const price = params.get('price');
+
+        document.getElementById('productName').value = productName;
+        document.getElementById('price').value = price;
+
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceInput = document.getElementById('totalPrice');
+
+        // Calculate total price
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value, 10) || 1;
+            totalPriceInput.value = quantity * parseFloat(price);
+        }
+
+        quantityInput.addEventListener('input', updateTotalPrice);
+        updateTotalPrice();
+
+        // Handle form submission
+        function handleOrderSubmit(event) {
+            event.preventDefault();
+            
+            const userName = document.getElementById('userName').value;
+            const address = document.getElementById('address').value;
+            const product = document.getElementById('productName').value;
+            const price = document.getElementById('price').value;
+            const quantity = document.getElementById('quantity').value;
+            const totalPrice = document.getElementById('totalPrice').value;
+
+            const orderData = {
+                userName: userName,
+                address: address,
+                product: product,
+                price: price,
+                quantity: quantity,
+                totalPrice: totalPrice
+            };
+
+            // Send data to Google Apps Script using fetch
+            const url = 'https://script.google.com/macros/s/AKfycbxM3uA755LomnCOOlsf_jRuwXusM5SCKnaXumapb5bt2Z5N53J75e2UyVciEcHEPOl4/exec';  // Replace with your web app URL
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)  // Send the order data as JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Order submitted successfully:', data);
+                alert('Order confirmed! Thank you, ' + userName + '.');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error confirming your order.');
+            });
+        }
+    </script>
+</body>
+</html>
