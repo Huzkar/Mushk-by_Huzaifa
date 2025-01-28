@@ -40,6 +40,10 @@
                 <label for="totalPrice">Total Price (Rs):</label>
                 <input type="number" id="totalPrice" name="totalPrice" readonly>
 
+                <!-- Order Date -->
+                <label for="orderDate">Order Date:</label>
+                <input type="date" id="orderDate" name="orderDate" required>
+
                 <button type="submit">Confirm Order</button>
             </form>
         </section>
@@ -80,6 +84,7 @@
             const price = document.getElementById('price').value;
             const quantity = document.getElementById('quantity').value;
             const totalPrice = document.getElementById('totalPrice').value;
+            const orderDate = document.getElementById('orderDate').value;
 
             const orderData = {
                 userName: userName,
@@ -87,7 +92,8 @@
                 product: product,
                 price: price,
                 quantity: quantity,
-                totalPrice: totalPrice
+                totalPrice: totalPrice,
+                orderDate: orderDate // Add order date to the data
             };
 
             // Send data to Google Apps Script using fetch
