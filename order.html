@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+i have change my approach thi si  is my order.html file now <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <header>
@@ -77,7 +78,8 @@
         // Handle form submission
         function handleOrderSubmit(event) {
             event.preventDefault();
-            
+
+            // Get form data
             const userName = document.getElementById('userName').value;
             const address = document.getElementById('address').value;
             const product = document.getElementById('productName').value;
@@ -86,42 +88,29 @@
             const totalPrice = document.getElementById('totalPrice').value;
             const orderDate = document.getElementById('orderDate').value;
 
-            const orderData = {
-                userName: userName,
-                address: address,
-                product: product,
-                price: price,
-                quantity: quantity,
-                totalPrice: totalPrice,
-                orderDate: orderDate // Add order date to the data
-            };
+            // Construct the URL with query parameters
+            const url = `YOUR_GOOGLE_SCRIPT_URL?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
 
             // Send data to Google Apps Script using fetch
-            const url = 'https://script.google.com/macros/s/AKfycbxM3uA755LomnCOOlsf_jRuwXusM5SCKnaXumapb5bt2Z5N53J75e2UyVciEcHEPOl4/exec';  // Replace with your web app URL
-
             fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(orderData)  // Send the order data as JSON
+                method: 'GET',
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Order submitted successfully:', data);
-                alert('Order confirmed! Thank you, ' + userName + '.');
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log('Order submitted successfully:', data);
+                    alert('Order confirmed! Thank you, ' + userName + '.');
 
-                // Reset the form fields
-                document.getElementById('orderDetailsForm').reset();
+                    // Reset the form fields
+                    document.getElementById('orderDetailsForm').reset();
 
-                // Optionally, you can also clear the total price field after submission
-                document.getElementById('totalPrice').value = ''; 
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error confirming your order.');
-            });
+                    // Optionally, you can also clear the total price field after submission
+                    document.getElementById('totalPrice').value = '';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('There was an error confirming your order.');
+                });
         }
     </script>
 </body>
-</html>
+</html> 
