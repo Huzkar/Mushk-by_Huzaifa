@@ -89,7 +89,7 @@
             const orderDate = document.getElementById('orderDate').value;
 
             // Construct the URL with query parameters
-            const url = `YOUR_GOOGLE_SCRIPT_URL?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
+            const url = `https://script.google.com/macros/s/AKfycbxM3uA755LomnCOOlsf_jRuwXusM5SCKnaXumapb5bt2Z5N53J75e2UyVciEcHEPOl4/exec?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
 
             // Send data to Google Apps Script using fetch
             fetch(url, {
