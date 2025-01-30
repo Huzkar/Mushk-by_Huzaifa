@@ -90,26 +90,32 @@
     
             // Construct the URL with query parameters
             const url = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
-
-            console.log("Generated URL: ", url);
-            // Send data to Google Apps Script using fetch with no-cors mode
-            fetch(url, {
-                method: 'GET',
-                mode: 'no-cors', // Important: This disables CORS validation
-            })
-                .then((response) => {
-                    // Since we are using no-cors, we can't access the response directly
-                    console.log('Order submitted successfully.');
-                    alert('Order confirmed! Thank you, ' + userName + '.');
     
-                    // Reset the form fields
-                    document.getElementById('orderDetailsForm').reset();
-                    document.getElementById('totalPrice').value = '';
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('There was an error confirming your order.');
-                });
+            console.log("Generated URL: ", url);
+    
+            // Use the proxy to send data
+            const proxyUrl = `https://huzkar-fragrances.vercel.app/api/cors-proxy?url=${encodeURIComponent(url)}`;
+    
+            // Send data to Google Apps Script using fetch with CORS proxy
+            fetch(proxyUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((response) => {
+                // Since we are using a proxy, we can handle the response normally
+                console.log('Order submitted successfully.');
+                alert('Order confirmed! Thank you, ' + userName + '.');
+    
+                // Reset the form fields
+                document.getElementById('orderDetailsForm').reset();
+                document.getElementById('totalPrice').value = '';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('There was an error confirming your order.');
+            });
         }
     </script>
     
