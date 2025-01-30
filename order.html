@@ -98,36 +98,29 @@
     
             // Send data to Google Apps Script using fetch with CORS proxy
             fetch(proxyUrl, {
-                method: 'POST',
+                method: 'GET', // Using GET method to match Google Apps Script
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    userName,
-                    address,
-                    product,
-                    price,
-                    quantity,
-                    totalPrice,
-                    orderDate
-                })
+                }
             })
             .then((response) => {
-                if (response.ok) {
-                    console.log('Order submitted successfully.');
-                    alert('Order confirmed! Thank you, ' + userName + '.');
-                    document.getElementById('orderDetailsForm').reset();
-                    document.getElementById('totalPrice').value = '';
-                } else {
-                    alert('Failed to submit order. Please try again later.');
-                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log('Order submitted successfully.');
+                alert('Order confirmed! Thank you, ' + userName + '.');
+    
+                // Reset the form fields
+                document.getElementById('orderDetailsForm').reset();
+                document.getElementById('totalPrice').value = '';
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert('There was an error confirming your order: ' + error.message);
+                alert('There was an error confirming your order.');
             });
         }
     </script>
+    
     
     
 </body>
