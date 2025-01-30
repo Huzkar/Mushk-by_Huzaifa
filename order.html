@@ -91,6 +91,7 @@
             // Construct the URL with query parameters
             const url = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
 
+            console.log("Generated URL: ", url);
             // Send data to Google Apps Script using fetch with no-cors mode
             fetch(url, {
                 method: 'GET',
