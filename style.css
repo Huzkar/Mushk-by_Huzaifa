@@ -45,6 +45,9 @@ header {
         flex-direction: column;
         align-items: center;
     }
+    .header-h1{
+        font-size: 30px;
+    }
 }
 .logo {
     height: 100px;
