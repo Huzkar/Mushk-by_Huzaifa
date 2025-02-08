@@ -27,15 +27,21 @@ app.all('/api/cors-proxy', async (req, res) => {
   try {
     const options = {
       method: req.method,
-      headers: req.headers,
+      headers: {
+        ...req.headers,
+        'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Replace with your access token
+      },
       body: req.method === 'GET' || req.method === 'HEAD' ? null : JSON.stringify(req.body),
+      redirect: 'follow', // Handle redirects
     };
 
     console.log(`Fetching URL: ${targetUrl} with options:`, options);
 
     const response = await fetch(targetUrl, options);
-    const data = await response.json();
+    const rawData = await response.text(); // Get raw response as text
+    console.log('Raw response:', rawData);
 
+    const data = JSON.parse(rawData); // Parse as JSON
     res.status(response.status).json(data);
   } catch (error) {
     console.error('Error fetching data:', error.message);
