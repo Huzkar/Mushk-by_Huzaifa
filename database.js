@@ -7,6 +7,17 @@ app.use(bodyParser.json());
 
 const db = new sqlite3.Database('data.db'); // Creates a file-based SQLite database
 
+// Middleware to set CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://huzkar-fragrances-huzkars-projects.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
 // Create table if not exists
 db.serialize(() => {
   db.run(`CREATE TABLE IF NOT EXISTS orders (
