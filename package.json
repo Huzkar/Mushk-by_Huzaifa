@@ -7,13 +7,18 @@
     "start": "node cors-proxy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["fragrance", "store", "e-commerce"],
+  "keywords": [
+    "fragrance",
+    "store",
+    "e-commerce"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "description": "A proxy server for Huzkar Fragrances e-commerce website",
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "sqlite3": "^5.1.7"
   }
 }

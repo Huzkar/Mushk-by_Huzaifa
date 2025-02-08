@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
     <header>
@@ -76,53 +75,37 @@
         updateTotalPrice();
     
         // Handle form submission
-        function handleOrderSubmit(event) {
+        async function handleOrderSubmit(event) {
             event.preventDefault();
     
             // Get form data
-            const userName = document.getElementById('userName').value;
-            const address = document.getElementById('address').value;
-            const product = document.getElementById('productName').value;
-            const price = document.getElementById('price').value;
-            const quantity = document.getElementById('quantity').value;
-            const totalPrice = document.getElementById('totalPrice').value;
-            const orderDate = document.getElementById('orderDate').value;
+            const formData = new FormData(document.getElementById('orderDetailsForm'));
+            const jsonData = Object.fromEntries(formData.entries());
     
-            // Construct the URL with query parameters
-            const url = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec?userName=${encodeURIComponent(userName)}&address=${encodeURIComponent(address)}&product=${encodeURIComponent(product)}&price=${encodeURIComponent(price)}&quantity=${encodeURIComponent(quantity)}&totalPrice=${encodeURIComponent(totalPrice)}&orderDate=${encodeURIComponent(orderDate)}`;
+            // API endpoint URL hosted on Vercel
+            const apiUrl = `https://huzkar-fragrances.vercel.app/api/save-data`;
     
-            console.log("Generated URL: ", url);
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
     
-            // Use the proxy to send data
-            const proxyUrl = `https://huzkar-fragrances.vercel.app/api/cors-proxy?url=${encodeURIComponent(url)}`;
-    
-            // Send data to Google Apps Script using fetch with CORS proxy
-            fetch(proxyUrl, {
-                method: 'GET', // Using GET method to match Google Apps Script
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                console.log('Order submitted successfully.');
-                alert('Order confirmed! Thank you, ' + userName + '.');
+                const data = await response.json();
+                console.log('Order submitted successfully:', data);
+                alert('Order confirmed! Thank you, ' + jsonData.userName + '.');
     
                 // Reset the form fields
                 document.getElementById('orderDetailsForm').reset();
                 document.getElementById('totalPrice').value = '';
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error('Error:', error);
                 alert('There was an error confirming your order.');
-            });
+            }
         }
     </script>
-    
-    
-    
-    
 </body>
-</html> 
+</html>
