@@ -5,10 +5,11 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-app.all('/proxy', async (req, res) => {
+app.all('/api/cors-proxy', async (req, res) => {
   const targetUrl = req.query.url;
 
   if (!targetUrl) {
+    console.error('Missing URL query parameter');
     return res.status(400).json({ error: 'Missing URL query parameter' });
   }
 
@@ -30,13 +31,16 @@ app.all('/proxy', async (req, res) => {
       body: req.method === 'GET' || req.method === 'HEAD' ? null : JSON.stringify(req.body),
     };
 
+    console.log(`Fetching URL: ${targetUrl} with options:`, options);
+
     const response = await fetch(targetUrl, options);
     const data = await response.json();
 
     res.status(response.status).json(data);
   } catch (error) {
-    console.error('Error fetching data:', error);
-    res.status(500).json({ error: 'Failed to fetch data' });
+    console.error('Error fetching data:', error.message);
+    console.error('Error stack trace:', error.stack);
+    res.status(500).json({ error: `Failed to fetch data: ${error.message}` });
   }
 });
 
