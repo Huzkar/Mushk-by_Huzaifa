@@ -2,13 +2,15 @@
   "name": "huzkar_fragrances",
   "version": "1.0.0",
   "main": "cors-proxy.js",
+  "type": "module",
   "scripts": {
+    "start": "node cors-proxy.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["fragrance", "store", "e-commerce"],
+  "author": "Your Name",
   "license": "ISC",
-  "description": "",
+  "description": "A proxy server for Huzkar Fragrances e-commerce website",
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
