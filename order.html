@@ -82,8 +82,8 @@
             const formData = new FormData(document.getElementById('orderDetailsForm'));
             const jsonData = Object.fromEntries(formData.entries());
     
-            // API endpoint URL hosted on Vercel
-            const apiUrl = `https://huzkar-fragrances.vercel.app/api/save-data`;
+            // API endpoint URL (replace with your Google Apps Script URL)
+            const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
     
             try {
                 const response = await fetch(apiUrl, {
