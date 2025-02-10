@@ -82,8 +82,8 @@
             const formData = new FormData(document.getElementById('orderDetailsForm'));
             const jsonData = Object.fromEntries(formData.entries());
     
-            // API endpoint URL (replace with your Google Apps Script URL)
-            const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
+            // API endpoint URL (replace with your updated Google Apps Script URL)
+            const apiUrl = `https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec`;
     
             try {
                 const response = await fetch(apiUrl, {
@@ -91,7 +91,8 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(jsonData)
+                    body: JSON.stringify(jsonData),
+                    mode: 'cors' // Ensure CORS is enabled
                 });
     
                 const data = await response.json();
