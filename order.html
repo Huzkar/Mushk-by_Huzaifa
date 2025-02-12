@@ -53,55 +53,65 @@
         <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
     </footer>
     <script>
-        // Extract URL parameters and prefill the form
-        const params = new URLSearchParams(window.location.search);
-        const productName = params.get('product');
-        const price = params.get('price');
+      // Extract URL parameters and prefill the form
+const params = new URLSearchParams(window.location.search);
+const productName = params.get('product');
+const price = params.get('price');
+
+document.getElementById('productName').value = productName;
+document.getElementById('price').value = price;
+
+const quantityInput = document.getElementById('quantity');
+const totalPriceInput = document.getElementById('totalPrice');
+
+// Calculate total price
+function updateTotalPrice() {
+    const quantity = parseInt(quantityInput.value, 10) || 1;
+    totalPriceInput.value = quantity * parseFloat(price);
+}
+
+quantityInput.addEventListener('input', updateTotalPrice);
+updateTotalPrice();
+
+// Handle form submission
+async function handleOrderSubmit(event) {
+    event.preventDefault();
+
+    // Get form data
+    const formData = new FormData(document.getElementById('orderDetailsForm'));
+    const formObject = Object.fromEntries(formData.entries());
     
-        document.getElementById('productName').value = productName;
-        document.getElementById('price').value = price;
-    
-        const quantityInput = document.getElementById('quantity');
-        const totalPriceInput = document.getElementById('totalPrice');
-    
-        // Calculate total price
-        function updateTotalPrice() {
-            const quantity = parseInt(quantityInput.value, 10) || 1;
-            totalPriceInput.value = quantity * parseFloat(price);
+    // API endpoint URL (replace with your actual deployment ID)
+    const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            console.log('Order submitted successfully');
+            alert('Order confirmed! Thank you, ' + formObject.userName + '.');
+            
+            // Reset form fields
+            document.getElementById('orderDetailsForm').reset();
+            document.getElementById('totalPrice').value = '';
+        } else {
+            console.error('Error:', result.message);
+            alert('There was an error confirming your order: ' + result.message);
         }
-    
-        quantityInput.addEventListener('input', updateTotalPrice);
-        updateTotalPrice();
-    
-        // Handle form submission
-        async function handleOrderSubmit(event) {
-            event.preventDefault();
-    
-            // Get form data
-            const formData = new FormData(document.getElementById('orderDetailsForm'));
-    
-            // API endpoint URL (replace with your actual deployment ID)
-            const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
-    
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    body: formData, // Send FormData directly
-                    mode: 'no-cors' // Bypass CORS restrictions
-                });
-    
-                console.log('Order submitted successfully');
-                alert('Order confirmed! Thank you, ' + formData.get('userName') + '.');
-    
-                // Reset form fields
-                document.getElementById('orderDetailsForm').reset();
-                document.getElementById('totalPrice').value = '';
-    
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error confirming your order.');
-            }
-        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error confirming your order.');
+    }
+}
     </script>
    
     
