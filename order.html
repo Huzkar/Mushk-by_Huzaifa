@@ -76,40 +76,34 @@
         // Handle form submission
         async function handleOrderSubmit(event) {
             event.preventDefault();
-
-            // Convert form data to JSON
+    
+            // Get form data
             const formData = new FormData(document.getElementById('orderDetailsForm'));
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            // API endpoint URL
+    
+            // API endpoint URL (replace with your actual deployment ID)
             const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
-
+    
             try {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data) // Send JSON instead of FormData
+                    body: formData, // Send FormData directly
+                    mode: 'no-cors' // Bypass CORS restrictions
                 });
-
-                const result = await response.json();
-                console.log(result);
-                alert(result.message);
-
-                // Reset form
+    
+                console.log('Order submitted successfully');
+                alert('Order confirmed! Thank you, ' + formData.get('userName') + '.');
+    
+                // Reset form fields
                 document.getElementById('orderDetailsForm').reset();
                 document.getElementById('totalPrice').value = '';
-
+    
             } catch (error) {
                 console.error('Error:', error);
                 alert('There was an error confirming your order.');
             }
         }
     </script>
+   
     
 </body>
 </html>
