@@ -52,7 +52,6 @@
     <footer>
         <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
     </footer>
-
     <script>
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
@@ -77,27 +76,34 @@
         // Handle form submission
         async function handleOrderSubmit(event) {
             event.preventDefault();
-    
-            // Get form data
+
+            // Convert form data to JSON
             const formData = new FormData(document.getElementById('orderDetailsForm'));
-    
-            // API endpoint URL (replace with your actual deployment ID)
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // API endpoint URL
             const apiUrl = `https://script.google.com/macros/s/AKfycbz1PV23O0hmKoKPUhDwTITZPBZJJh1IpauP3MntQUDkfZKiEA9wh-IWqnjgp1PW2WZa/exec`;
-    
+
             try {
                 const response = await fetch(apiUrl, {
                     method: 'POST',
-                    body: formData, // Send FormData directly
-                    mode: 'no-cors' // Bypass CORS restrictions
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data) // Send JSON instead of FormData
                 });
-    
-                console.log('Order submitted successfully');
-                alert('Order confirmed! Thank you, ' + formData.get('userName') + '.');
-    
-                // Reset form fields
+
+                const result = await response.json();
+                console.log(result);
+                alert(result.message);
+
+                // Reset form
                 document.getElementById('orderDetailsForm').reset();
                 document.getElementById('totalPrice').value = '';
-    
+
             } catch (error) {
                 console.error('Error:', error);
                 alert('There was an error confirming your order.');
