@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <h1>Order Confirmation</h1>
@@ -18,26 +20,28 @@
                 <!-- Your Name -->
                 <label for="userName">Your Name:</label>
                 <input type="text" id="userName" name="entry.1110349223" placeholder="Enter your name" required>
-            
+
                 <!-- Your Address -->
                 <label for="address">Your Address:</label>
-                <textarea id="address" name="entry.1317313478" placeholder="Enter your address" rows="3" required></textarea>
-            
+                <textarea id="address" name="entry.1317313478" placeholder="Enter your address" rows="3"
+                    required></textarea>
+
                 <!-- Mobile Number -->
                 <label for="mobile">Mobile Number:</label>
-                <input type="number" id="mobile" name="entry.1854760355" placeholder="Enter your mobile number" required>
-            
+                <input type="number" id="mobile" name="entry.1854760355" placeholder="Enter your mobile number"
+                    required>
+
                 <!-- Product Name (Read-Only) -->
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="entry.269780076" readonly>
-            
+
                 <!-- Stylish Bottle -->
                 <label for="bottleOffer">Stylish Bottle:</label>
                 <select id="bottleOffer" name="entry.506509292">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-            
+
                 <!-- Stylish Bottle Price -->
                 <label for="bottlePrice">Stylish Bottle Price:</label>
                 <select id="bottlePrice" name="entry.1710796685">
@@ -45,33 +49,33 @@
                     <option value="6ml">6ml (180 Rs)</option>
                     <option value="12ml (230 Rs)">12ml</option>
                 </select>
-            
+
                 <!-- Price (Read-Only) -->
                 <label for="price">Price (Rs):</label>
                 <input type="number" id="price" name="entry.2133492647" readonly>
-            
+
                 <!-- Quantity -->
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="entry.171744850" min="1" value="1" required>
-            
+
                 <!-- Total Price (Read-Only) -->
                 <label for="totalPrice">Total Price (Rs):</label>
                 <input type="number" id="totalPrice" name="entry.1229946366" readonly>
-            
+
                 <!-- Order Date -->
                 <label for="orderDate">Order Date:</label>
                 <input type="date" id="orderDate" name="entry.1580478863" required>
-            
+
                 <!-- Payment Method -->
                 <label for="paymentMethod">Payment Method:</label>
                 <select id="paymentMethod" name="entry.175859627">
                     <option value="online">Online payment</option>
                     <option value="ondelivery">Payment on delivery</option>
                 </select>
-            
+
                 <button type="submit">Submit</button>
             </form>
-            
+
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </section>
     </main>
@@ -79,7 +83,7 @@
     <footer>
         <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
     </footer>
-    
+
     <script>
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
@@ -115,6 +119,7 @@
                     mode: 'no-cors' // Bypass CORS restrictions
                 });
 
+
                 console.log('Order submitted successfully');
                 alert('Order confirmed! Thank you, ' + formData.get('entry.1110349223') + '.');
 
@@ -132,4 +137,5 @@
         document.getElementById('custom-form').addEventListener('submit', handleOrderSubmit);
     </script>
 </body>
+
 </html>
