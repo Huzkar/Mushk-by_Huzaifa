@@ -74,70 +74,90 @@
     <footer>
         <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
     </footer>
-
     <script>
         let submitted = false; 
-
+    
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
         const productName = params.get('product');
         const price = params.get('price');
-
+    
         document.getElementById('productName').value = productName || "N/A";
         document.getElementById('price').value = price || "0";
-
+    
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
         const bottleOffer = document.getElementById('bottleOffer');
         const bottlePrice = document.getElementById('bottlePrice');
+        const bottlePriceLabel = document.querySelector('label[for="bottlePrice"]'); // Label for the bottle price dropdown
         const paymentMethod = document.getElementById('paymentMethod');
-
-        // Calculate total price
+    
+        // Function to update total price
         function updateTotalPrice() {
             let quantity = parseInt(quantityInput.value, 10) || 1;
             let basePrice = parseFloat(price || "0");
-
-            let selectedBottle = bottleOffer.value;
             let bottleExtraCost = 0;
-
-            if (selectedBottle === "yes") {
+    
+            if (bottleOffer.value === "yes") {
+                bottlePrice.style.display = "block";
+                bottlePriceLabel.style.display = "block";
+    
                 let bottleSelection = bottlePrice.value;
-                if (bottleSelection.includes("3ml")) bottleExtraCost = 130;
-                else if (bottleSelection.includes("6ml")) bottleExtraCost = 180;
-                else if (bottleSelection.includes("12ml")) bottleExtraCost = 230;
+                if (bottleSelection === "3ml") bottleExtraCost = 130;
+                else if (bottleSelection === "6ml") bottleExtraCost = 180;
+                else if (bottleSelection === "12ml") bottleExtraCost = 230;
+            } else {
+                bottlePrice.style.display = "none";
+                bottlePriceLabel.style.display = "none";
             }
-
+    
             let total = (basePrice + bottleExtraCost) * quantity;
             totalPriceInput.value = total;
         }
-
+    
+        // Hide bottle price dropdown by default if "No" is selected
+        function toggleBottlePrice() {
+            if (bottleOffer.value === "no") {
+                bottlePrice.style.display = "none";
+                bottlePriceLabel.style.display = "none";
+                bottlePrice.value = "3ml"; // Reset to default value
+            } else {
+                bottlePrice.style.display = "block";
+                bottlePriceLabel.style.display = "block";
+            }
+            updateTotalPrice();
+        }
+    
         // Update price when quantity or bottle options change
         quantityInput.addEventListener('input', updateTotalPrice);
-        bottleOffer.addEventListener('change', updateTotalPrice);
+        bottleOffer.addEventListener('change', toggleBottlePrice);
         bottlePrice.addEventListener('change', updateTotalPrice);
-        updateTotalPrice();
-
+    
+        // Initialize correctly on page load
+        toggleBottlePrice();
+    
         // Handle form submission properly
         document.getElementById("custom-form").onsubmit = function(event) {
             event.preventDefault(); 
-
+    
             // Ensure all required dropdowns are selected
             if (!bottleOffer.value || !paymentMethod.value) {
                 alert("Please select all required fields before submitting.");
                 return false;
             }
-
+    
             submitted = true;
-
+    
             // Submit the form programmatically using an iframe
             this.target = "hidden_iframe"; 
             this.submit();
-
+    
             setTimeout(() => {
                 document.getElementById("custom-form").style.display = "none";
                 document.getElementById("confirmation-message").style.display = "block";
             }, 500);
         };
     </script>
-</body>
+    
+    </body>
 </html>
