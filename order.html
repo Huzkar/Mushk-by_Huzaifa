@@ -15,6 +15,8 @@
         <section id="order-section">
             <h2>Complete Your Order</h2>
             <form id="custom-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevCjhUIoCYPG8CG873sHqhQOYT4OwZSg8ge9RnzxfwyTCHjQ/formResponse" method="POST">
+
+
                 <label for="userName">Your Name:</label>
                 <input type="text" id="userName" name="entry.1110349223" placeholder="Enter your name" required>
 
@@ -60,12 +62,14 @@
 
                 <button type="submit">Submit</button>
             </form>
-            
             <div id="confirmation-message" style="display: none; text-align: center; margin-top: 20px;">
                 <h2>Order Confirmed ✅</h2>
                 <p>Thanks for shopping with us!</p>
                 <a href="index.html">Go Back to Homepage</a>
             </div>
+            
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </section>
     </main>
 
@@ -74,39 +78,66 @@
     </footer>
 
     <script>
-        // Extract URL parameters and prefill the form
-        const params = new URLSearchParams(window.location.search);
-        const productName = params.get('product');
-        const price = params.get('price');
+        let submitted = false; // Declare globally
 
-        document.getElementById('productName').value = productName || "N/A";
-        document.getElementById('price').value = price || "0";
+// Extract URL parameters and prefill the form
+const params = new URLSearchParams(window.location.search);
+const productName = params.get('product');
+const price = params.get('price');
 
-        const quantityInput = document.getElementById('quantity');
-        const totalPriceInput = document.getElementById('totalPrice');
+document.getElementById('productName').value = productName || "N/A";
+document.getElementById('price').value = price || "0";
 
-        // Calculate total price
-        function updateTotalPrice() {
-            const quantity = parseInt(quantityInput.value, 10) || 1;
-            totalPriceInput.value = quantity * parseFloat(price || "0");
-        }
+const quantityInput = document.getElementById('quantity');
+const totalPriceInput = document.getElementById('totalPrice');
+const bottleOffer = document.getElementById('bottleOffer');
+const bottlePrice = document.getElementById('bottlePrice');
+const paymentMethod = document.getElementById('paymentMethod');
 
-        quantityInput.addEventListener('input', updateTotalPrice);
-        updateTotalPrice();
+// Set default values for dropdowns
+if (!bottleOffer.value) bottleOffer.value = "No Offer";
+if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
+if (!paymentMethod.value) paymentMethod.value = "Online Payment";
 
-        // Handle form submission
-        document.getElementById("custom-form").onsubmit = function(event) {
-            event.preventDefault(); // Prevent default form submission
+// Calculate total price
+function updateTotalPrice() {
+    const quantity = parseInt(quantityInput.value, 10) || 1;
+    totalPriceInput.value = quantity * parseFloat(price || "0");
+}
 
-            // Submit the form using JavaScript
-            this.submit();
+quantityInput.addEventListener('input', updateTotalPrice);
+updateTotalPrice();
 
-            // Show confirmation message and hide the form after submission
-            setTimeout(() => {
-                document.getElementById("custom-form").style.display = "none";
-                document.getElementById("confirmation-message").style.display = "block";
-            }, 500); 
-        };
-    </script>     
+// Handle form submission properly
+document.getElementById("custom-form").onsubmit = function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Ensure all required dropdowns are selected
+    if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
+        alert("Please select all required fields before submitting.");
+        return false;
+    }
+
+    submitted = true;
+
+    // Submit the form programmatically using an iframe
+    this.target = "hidden_iframe"; // Submits the form in the hidden iframe
+    this.submit();
+
+    // **Fix: Show Confirmation Message Immediately**
+    setTimeout(() => {
+        document.getElementById("custom-form").style.display = "none"; // Hide the form
+        document.getElementById("confirmation-message").style.display = "block"; // Show confirmation message
+    }, 500); // Wait 0.5s for submission to complete
+};
+
+// No need to check iframe load, remove unnecessary onload function
+
+    </script>
+    
+
+    
+    
 </body>
 </html>
+
