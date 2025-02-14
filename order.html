@@ -3,154 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Details</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Order Form</title>
 </head>
 <body>
-    <header>
-        <h1>Order Confirmation</h1>
-    </header>
+    <form id="custom-form" action="YOUR_GOOGLE_FORM_URL_HERE" method="post" target="hidden_iframe">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" readonly><br>
 
-    <main>
-        <section id="order-section">
-            <h2>Complete Your Order</h2>
-            <form id="custom-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevCjhUIoCYPG8CG873sHqhQOYT4OwZSg8ge9RnzxfwyTCHjQ/formResponse" method="POST">
+        <label for="price">Price (per unit):</label>
+        <input type="text" id="price" name="price" readonly><br>
 
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1"><br>
 
-                <label for="userName">Your Name:</label>
-                <input type="text" id="userName" name="entry.1110349223" placeholder="Enter your name" required>
+        <label for="bottleOffer">Stylish Bottle:</label>
+        <select id="bottleOffer" name="bottleOffer">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
 
-                <label for="address">Your Address:</label>
-                <textarea id="address" name="entry.1317313478" placeholder="Enter your address" rows="3" required></textarea>
+        <!-- Stylish Bottle Price (Initially Hidden) -->
+        <div id="bottlePriceContainer">
+            <label for="bottlePrice">Stylish Bottle Price:</label>
+            <select id="bottlePrice" name="bottlePrice">
+                <option value="3ml">3ml (130 Rs)</option>
+                <option value="6ml">6ml (180 Rs)</option>
+                <option value="12ml">12ml (230 Rs)</option>
+            </select><br>
+        </div>
 
-                <label for="mobile">Mobile Number:</label>
-                <input type="number" id="mobile" name="entry.1854760355" placeholder="Enter your mobile number" required>
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod">
+            <option value="Online Payment">Online Payment</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+        </select><br>
 
-                <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="entry.269780076" readonly>
+        <label for="totalPrice">Total Price:</label>
+        <input type="text" id="totalPrice" name="totalPrice" readonly><br>
 
-                <label for="bottleOffer">Stylish Bottle:</label>
-                <select id="bottleOffer" name="entry.506509292">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
+        <button type="submit">Submit</button>
+    </form>
 
-                <label for="bottlePrice">Stylish Bottle Price:</label>
-                <select id="bottlePrice" name="entry.1710796685">
-                    <option value="3ml">3ml (130 Rs)</option>
-                    <option value="6ml">6ml (180 Rs)</option>
-                    <option value="12ml">12ml (230 Rs)</option>
-                </select>
+    <!-- Confirmation Message (Hidden Initially) -->
+    <div id="confirmation-message" style="display: none;">
+        <h3>Thank you! Your order has been submitted.</h3>
+    </div>
 
-                <label for="price">Price (Rs):</label>
-                <input type="number" id="price" name="entry.2133492647" readonly>
-
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="entry.171744850" min="1" value="1" required>
-
-                <label for="totalPrice">Total Price (Rs):</label>
-                <input type="number" id="totalPrice" name="entry.1229946366" readonly>
-
-                <label for="orderDate">Order Date:</label>
-                <input type="date" id="orderDate" name="entry.1580478863" required>
-
-                <label for="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod" name="entry.175859627">
-                    <option value="online">Online payment</option>
-                    <option value="ondelivery">Payment on delivery</option>
-                </select>
-
-                <button type="submit">Submit</button>
-            </form>
-            <div id="confirmation-message" style="display: none; text-align: center; margin-top: 20px;">
-                <h2>Order Confirmed ✅</h2>
-                <p>Thanks for shopping with us!</p>
-                <a href="index.html">Go Back to Homepage</a>
-            </div>
-            
-
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 HUZKAR Fragrance Store. All rights reserved.</p>
-    </footer>
+    <iframe name="hidden_iframe" style="display: none;"></iframe>
 
     <script>
-        let submitted = false; // Declare globally
-    
+        let submitted = false;
+
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
         const productName = params.get('product');
         const price = parseFloat(params.get('price')) || 0;
-    
+
         document.getElementById('productName').value = productName || "N/A";
         document.getElementById('price').value = price;
-    
+
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
         const bottleOffer = document.getElementById('bottleOffer');
         const bottlePrice = document.getElementById('bottlePrice');
+        const bottlePriceContainer = document.getElementById('bottlePriceContainer');
         const paymentMethod = document.getElementById('paymentMethod');
-    
-        // Set default values for dropdowns
-        if (!bottleOffer.value) bottleOffer.value = "No";
-        if (!bottlePrice.value) bottlePrice.value = "3ml";
-        if (!paymentMethod.value) paymentMethod.value = "Online Payment";
-    
+
+        // Hide Stylish Bottle Price dropdown initially if "No" is selected
+        function updateBottleVisibility() {
+            if (bottleOffer.value === "Yes") {
+                bottlePriceContainer.style.display = "block"; // Show dropdown
+            } else {
+                bottlePriceContainer.style.display = "none"; // Hide dropdown
+            }
+            updateTotalPrice();
+        }
+
         // Function to calculate total price
         function updateTotalPrice() {
             const quantity = parseInt(quantityInput.value, 10) || 1;
             let bottlePriceValue = 0;
-    
+
             // Check if Stylish Bottle is selected
             if (bottleOffer.value === "Yes") {
                 if (bottlePrice.value === "3ml") bottlePriceValue = 130;
                 else if (bottlePrice.value === "6ml") bottlePriceValue = 180;
                 else if (bottlePrice.value === "12ml") bottlePriceValue = 230;
             }
-    
+
             // Calculate final total price
             totalPriceInput.value = (price * quantity) + bottlePriceValue;
         }
-    
-        // Show/Hide bottle price dropdown based on selection
-        bottleOffer.addEventListener("change", function () {
-            if (this.value === "Yes") {
-                bottlePrice.parentElement.style.display = "block"; // Show dropdown
-            } else {
-                bottlePrice.parentElement.style.display = "none"; // Hide dropdown
-            }
-            updateTotalPrice();
-        });
-    
-        // Event listeners for updates
-        quantityInput.addEventListener('input', updateTotalPrice);
-        bottlePrice.addEventListener('change', updateTotalPrice);
-        
-        // Initial update to ensure proper display
+
+        // Event listeners
+        bottleOffer.addEventListener("change", updateBottleVisibility);
+        quantityInput.addEventListener("input", updateTotalPrice);
+        bottlePrice.addEventListener("change", updateTotalPrice);
+
+        // Initial update
+        updateBottleVisibility();
         updateTotalPrice();
-        if (bottleOffer.value === "No") {
-            bottlePrice.parentElement.style.display = "none"; // Hide bottle price dropdown initially
-        }
-    
+
         // Handle form submission properly
         document.getElementById("custom-form").onsubmit = function(event) {
             event.preventDefault(); // Prevent default form submission
-    
+
             // Ensure all required dropdowns are selected
             if (!bottleOffer.value || (bottleOffer.value === "Yes" && !bottlePrice.value) || !paymentMethod.value) {
                 alert("Please select all required fields before submitting.");
                 return false;
             }
-    
+
             submitted = true;
-    
+
             // Submit the form programmatically using an iframe
             this.target = "hidden_iframe"; // Submits the form in the hidden iframe
             this.submit();
-    
+
             // Show Confirmation Message
             setTimeout(() => {
                 document.getElementById("custom-form").style.display = "none"; // Hide the form
@@ -158,8 +127,5 @@
             }, 500); // Wait 0.5s for submission to complete
         };
     </script>
-    
-    
-    
 </body>
 </html>
