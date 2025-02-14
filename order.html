@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form id="custom-form" action="YOUR_GOOGLE_FORM_URL_HERE" method="post" target="hidden_iframe">
+    <form id="custom-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevCjhUIoCYPG8CG873sHqhQOYT4OwZSg8ge9RnzxfwyTCHjQ/formResponse" method="POST"></form>
         <label for="productName">Product Name:</label>
         <input type="text" id="productName" name="productName" readonly><br>
 
@@ -69,6 +69,8 @@
         const bottlePrice = document.getElementById('bottlePrice');
         const bottlePriceContainer = document.getElementById('bottlePriceContainer');
         const paymentMethod = document.getElementById('paymentMethod');
+        const form = document.getElementById("custom-form");
+        const confirmationMessage = document.getElementById("confirmation-message");
 
         // Hide Stylish Bottle Price dropdown initially if "No" is selected
         function updateBottleVisibility() {
@@ -96,17 +98,19 @@
             totalPriceInput.value = (price * quantity) + bottlePriceValue;
         }
 
-        // Event listeners
+        // Ensure form does NOT hide when "No" is selected
         bottleOffer.addEventListener("change", updateBottleVisibility);
+
+        // Ensure total price updates correctly
         quantityInput.addEventListener("input", updateTotalPrice);
         bottlePrice.addEventListener("change", updateTotalPrice);
 
-        // Initial update
+        // Initial setup
         updateBottleVisibility();
         updateTotalPrice();
 
         // Handle form submission properly
-        document.getElementById("custom-form").onsubmit = function(event) {
+        form.onsubmit = function(event) {
             event.preventDefault(); // Prevent default form submission
 
             // Ensure all required dropdowns are selected
@@ -121,10 +125,10 @@
             this.target = "hidden_iframe"; // Submits the form in the hidden iframe
             this.submit();
 
-            // Show Confirmation Message
+            // **Show Confirmation Message ONLY After Submission**
             setTimeout(() => {
-                document.getElementById("custom-form").style.display = "none"; // Hide the form
-                document.getElementById("confirmation-message").style.display = "block"; // Show confirmation message
+                form.style.display = "none"; // Hide the form
+                confirmationMessage.style.display = "block"; // Show confirmation message
             }, 500); // Wait 0.5s for submission to complete
         };
     </script>
