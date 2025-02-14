@@ -14,7 +14,7 @@
     <main>
         <section id="order-section">
             <h2>Complete Your Order</h2>
-            <form id="custom-form" action="https://docs.google.com/forms/d/e/17VX1yfonqBQ1ruIyrUq6HFmRdopiOVB9o-bfGnYP0iY/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+            <form id="custom-form" action="https://docs.google.com/forms/d/e/17VX1yfonqBQ1ruIyrUq6HFmRdopiOVB9o-bfGnYP0iY/formResponse" method="POST" target="hidden_iframe">
                 <!-- Your Name -->
                 <label for="userName">Your Name:</label>
                 <input type="text" id="userName" name="entry.1110349223" placeholder="Enter your name" required>
@@ -27,9 +27,10 @@
                 <label for="mobile">Mobile Number:</label>
                 <input type="number" id="mobile" name="entry.1854760355" placeholder="Enter your mobile number" required>
             
-                <!-- Product Name (Read-Only) -->
+                <!-- Product Name (Disabled for user, but still submitted) -->
                 <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="entry.269780076" readonly>
+                <input type="text" id="productName" disabled>
+                <input type="hidden" name="entry.269780076" id="hiddenProductName">
             
                 <!-- Stylish Bottle -->
                 <label for="bottleOffer">Stylish Bottle:</label>
@@ -46,17 +47,19 @@
                     <option value="12ml">12ml (230 Rs)</option>
                 </select>
             
-                <!-- Price (Read-Only) -->
+                <!-- Price (Disabled for user, but still submitted) -->
                 <label for="price">Price (Rs):</label>
-                <input type="number" id="price" name="entry.2133492647" readonly>
+                <input type="number" id="price" disabled>
+                <input type="hidden" name="entry.2133492647" id="hiddenPrice">
             
                 <!-- Quantity -->
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="entry.171744850" min="1" value="1" required>
             
-                <!-- Total Price (Read-Only) -->
+                <!-- Total Price (Disabled for user, but still submitted) -->
                 <label for="totalPrice">Total Price (Rs):</label>
-                <input type="number" id="totalPrice" name="entry.1229946366" readonly>
+                <input type="number" id="totalPrice" disabled>
+                <input type="hidden" name="entry.1229946366" id="hiddenTotalPrice">
             
                 <!-- Order Date -->
                 <label for="orderDate">Order Date:</label>
@@ -72,7 +75,7 @@
                 <button type="submit">Submit</button>
             </form>
             
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('Order confirmed!'); submitted=false; }"></iframe>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </section>
     </main>
 
@@ -85,23 +88,40 @@
 
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
-        const productName = params.get('product');
-        const price = params.get('price');
+        const productName = params.get('product') || "Unknown Product";
+        const price = parseFloat(params.get('price')) || 0;
 
+        // Prefill product details
         document.getElementById('productName').value = productName;
+        document.getElementById('hiddenProductName').value = productName;
         document.getElementById('price').value = price;
+        document.getElementById('hiddenPrice').value = price;
 
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
+        const hiddenTotalPrice = document.getElementById('hiddenTotalPrice');
 
-        // Calculate total price
+        // Calculate and update total price
         function updateTotalPrice() {
             const quantity = parseInt(quantityInput.value, 10) || 1;
-            totalPriceInput.value = quantity * parseFloat(price);
+            const total = quantity * price;
+            totalPriceInput.value = total;
+            hiddenTotalPrice.value = total;
         }
 
         quantityInput.addEventListener('input', updateTotalPrice);
         updateTotalPrice();
+
+        // Confirmation alert after form submission
+        document.getElementById('custom-form').addEventListener('submit', function() {
+            submitted = true;
+            setTimeout(() => {
+                if (submitted) {
+                    alert('Order confirmed!');
+                    submitted = false;
+                }
+            }, 2000);
+        });
     </script>
 </body>
 </html>
