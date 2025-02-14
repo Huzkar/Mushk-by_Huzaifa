@@ -73,32 +73,40 @@
 
     <script>
         let submitted = false; // Declare globally
-
+    
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
         const productName = params.get('product');
         const price = params.get('price');
-
+    
         document.getElementById('productName').value = productName || "N/A";
         document.getElementById('price').value = price || "0";
-
+    
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
-
+        const bottleOffer = document.getElementById('bottleOffer');
+        const bottlePrice = document.getElementById('bottlePrice');
+        const paymentMethod = document.getElementById('paymentMethod');
+    
         // Calculate total price
         function updateTotalPrice() {
             const quantity = parseInt(quantityInput.value, 10) || 1;
             totalPriceInput.value = quantity * parseFloat(price || "0");
         }
-
+    
         quantityInput.addEventListener('input', updateTotalPrice);
         updateTotalPrice();
-
+    
         // Handle form submission properly
         document.getElementById("custom-form").onsubmit = function() {
             submitted = true;
+    
+            // Ensure default values are set if the user doesn't choose
+            if (!bottleOffer.value) bottleOffer.value = "No";
+            if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
+            if (!paymentMethod.value) paymentMethod.value = "Online payment";
         };
-
+    
         document.getElementById("hidden_iframe").onload = function() {
             if (submitted) {
                 alert('Order confirmed!');
@@ -106,5 +114,6 @@
             }
         };
     </script>
+    
 </body>
 </html>
