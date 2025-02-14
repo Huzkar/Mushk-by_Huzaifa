@@ -14,7 +14,10 @@
     <main>
         <section id="order-section">
             <h2>Complete Your Order</h2>
-            <form id="custom-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevCjhUIoCYPG8CG873sHqhQOYT4OwZSg8ge9RnzxfwyTCHjQ/formResponse" method="POST">
+            <form id="custom-form" 
+      action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevCjhUIoCYPG8CG873sHqhQOYT4OwZSg8ge9RnzxfwyTCHjQ/formResponse" 
+      method="POST" 
+      target="hidden_iframe">
 
 
                 <label for="userName">Your Name:</label>
@@ -67,9 +70,9 @@
                 <p>Thanks for shopping with us!</p>
                 <a href="index.html">Go Back to Homepage</a>
             </div>
-            
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"></iframe>
 
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
         </section>
     </main>
 
