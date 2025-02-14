@@ -84,6 +84,9 @@
     
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
+        const bottleOffer = document.getElementById('bottleOffer');
+        const bottlePrice = document.getElementById('bottlePrice');
+        const paymentMethod = document.getElementById('paymentMethod');
     
         // Calculate total price
         function updateTotalPrice() {
@@ -95,7 +98,14 @@
         updateTotalPrice();
     
         // Handle form submission properly
-        document.getElementById("custom-form").onsubmit = function() {
+        document.getElementById("custom-form").onsubmit = function(event) {
+            // Ensure all required dropdowns are selected
+            if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
+                alert("Please select all required fields before submitting.");
+                event.preventDefault(); // Stop form submission if any dropdown is unselected
+                return false;
+            }
+    
             submitted = true;
         };
     
@@ -106,6 +116,7 @@
             }
         };
     </script>
+    
     
     
 </body>
