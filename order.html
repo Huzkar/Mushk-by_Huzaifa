@@ -79,59 +79,60 @@
 
     <script>
         let submitted = false; // Declare globally
-    
-        // Extract URL parameters and prefill the form
-        const params = new URLSearchParams(window.location.search);
-        const productName = params.get('product');
-        const price = params.get('price');
-    
-        document.getElementById('productName').value = productName || "N/A";
-        document.getElementById('price').value = price || "0";
-    
-        const quantityInput = document.getElementById('quantity');
-        const totalPriceInput = document.getElementById('totalPrice');
-        const bottleOffer = document.getElementById('bottleOffer');
-        const bottlePrice = document.getElementById('bottlePrice');
-        const paymentMethod = document.getElementById('paymentMethod');
-    
-        // Set default values for dropdowns
-        if (!bottleOffer.value) bottleOffer.value = "No Offer";
-        if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
-        if (!paymentMethod.value) paymentMethod.value = "Online Payment";
-    
-        // Calculate total price
-        function updateTotalPrice() {
-            const quantity = parseInt(quantityInput.value, 10) || 1;
-            totalPriceInput.value = quantity * parseFloat(price || "0");
-        }
-    
-        quantityInput.addEventListener('input', updateTotalPrice);
-        updateTotalPrice();
-    
-        // Handle form submission properly
-        document.getElementById("custom-form").onsubmit = function(event) {
-            event.preventDefault(); // Prevent default form submission
-    
-            // Ensure all required dropdowns are selected
-            if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
-                alert("Please select all required fields before submitting.");
-                return false;
-            }
-    
-            submitted = true;
-    
-            // Submit the form programmatically using an iframe
-            this.target = "hidden_iframe"; // Submits the form in the hidden iframe
-            this.submit();
-        };
-    
-        document.getElementById("hidden_iframe").onload = function() {
-            if (submitted) {
-                document.getElementById("custom-form").style.display = "none"; // Hide the form
-                document.getElementById("confirmation-message").style.display = "block"; // Show confirmation message
-                submitted = false;
-            }
-        };
+
+// Extract URL parameters and prefill the form
+const params = new URLSearchParams(window.location.search);
+const productName = params.get('product');
+const price = params.get('price');
+
+document.getElementById('productName').value = productName || "N/A";
+document.getElementById('price').value = price || "0";
+
+const quantityInput = document.getElementById('quantity');
+const totalPriceInput = document.getElementById('totalPrice');
+const bottleOffer = document.getElementById('bottleOffer');
+const bottlePrice = document.getElementById('bottlePrice');
+const paymentMethod = document.getElementById('paymentMethod');
+
+// Set default values for dropdowns
+if (!bottleOffer.value) bottleOffer.value = "No Offer";
+if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
+if (!paymentMethod.value) paymentMethod.value = "Online Payment";
+
+// Calculate total price
+function updateTotalPrice() {
+    const quantity = parseInt(quantityInput.value, 10) || 1;
+    totalPriceInput.value = quantity * parseFloat(price || "0");
+}
+
+quantityInput.addEventListener('input', updateTotalPrice);
+updateTotalPrice();
+
+// Handle form submission properly
+document.getElementById("custom-form").onsubmit = function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Ensure all required dropdowns are selected
+    if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
+        alert("Please select all required fields before submitting.");
+        return false;
+    }
+
+    submitted = true;
+
+    // Submit the form programmatically using an iframe
+    this.target = "hidden_iframe"; // Submits the form in the hidden iframe
+    this.submit();
+
+    // **Fix: Show Confirmation Message Immediately**
+    setTimeout(() => {
+        document.getElementById("custom-form").style.display = "none"; // Hide the form
+        document.getElementById("confirmation-message").style.display = "block"; // Show confirmation message
+    }, 500); // Wait 0.5s for submission to complete
+};
+
+// No need to check iframe load, remove unnecessary onload function
+
     </script>
     
 
