@@ -84,9 +84,6 @@
     
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
-        const bottleOffer = document.getElementById('bottleOffer');
-        const bottlePrice = document.getElementById('bottlePrice');
-        const paymentMethod = document.getElementById('paymentMethod');
     
         // Calculate total price
         function updateTotalPrice() {
@@ -100,11 +97,6 @@
         // Handle form submission properly
         document.getElementById("custom-form").onsubmit = function() {
             submitted = true;
-    
-            // Ensure default values are set if the user doesn't choose
-            if (!bottleOffer.value) bottleOffer.value = "No";
-            if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
-            if (!paymentMethod.value) paymentMethod.value = "Online payment";
         };
     
         document.getElementById("hidden_iframe").onload = function() {
@@ -114,6 +106,7 @@
             }
         };
     </script>
+    
     
 </body>
 </html>
