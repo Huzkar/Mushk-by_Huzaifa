@@ -72,50 +72,60 @@
     </footer>
 
     <script>
-    let submitted = false; // Declare globally
-
-    // Extract URL parameters and prefill the form
-    const params = new URLSearchParams(window.location.search);
-    const productName = params.get('product');
-    const price = params.get('price');
-
-    document.getElementById('productName').value = productName || "N/A";
-    document.getElementById('price').value = price || "0";
-
-    const quantityInput = document.getElementById('quantity');
-    const totalPriceInput = document.getElementById('totalPrice');
-    const bottleOffer = document.getElementById('bottleOffer');
-    const bottlePrice = document.getElementById('bottlePrice');
-    const paymentMethod = document.getElementById('paymentMethod');
-
-    // Calculate total price
-    function updateTotalPrice() {
-        const quantity = parseInt(quantityInput.value, 10) || 1;
-        totalPriceInput.value = quantity * parseFloat(price || "0");
-    }
-
-    quantityInput.addEventListener('input', updateTotalPrice);
-    updateTotalPrice();
-
-    // Handle form submission properly
-    document.getElementById("custom-form").onsubmit = function(event) {
-        // Ensure all required dropdowns are selected
-        if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
-            alert("Please select all required fields before submitting.");
-            event.preventDefault(); // Stop form submission if any dropdown is unselected
-            return false;
+        let submitted = false; // Declare globally
+    
+        // Extract URL parameters and prefill the form
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get('product');
+        const price = params.get('price');
+    
+        document.getElementById('productName').value = productName || "N/A";
+        document.getElementById('price').value = price || "0";
+    
+        const quantityInput = document.getElementById('quantity');
+        const totalPriceInput = document.getElementById('totalPrice');
+        const bottleOffer = document.getElementById('bottleOffer');
+        const bottlePrice = document.getElementById('bottlePrice');
+        const paymentMethod = document.getElementById('paymentMethod');
+    
+        // Set default values for dropdowns
+        if (!bottleOffer.value) bottleOffer.value = "No Offer";
+        if (!bottlePrice.value) bottlePrice.value = "3ml (130 Rs)";
+        if (!paymentMethod.value) paymentMethod.value = "Online Payment";
+    
+        // Calculate total price
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value, 10) || 1;
+            totalPriceInput.value = quantity * parseFloat(price || "0");
         }
-
-        submitted = true;
-    };
-
-    document.getElementById("hidden_iframe").onload = function() {
-        if (submitted) {
-            alert('Order confirmed!');
-            submitted = false;
-        }
-    };
-</script>
+    
+        quantityInput.addEventListener('input', updateTotalPrice);
+        updateTotalPrice();
+    
+        // Handle form submission properly
+        document.getElementById("custom-form").onsubmit = function(event) {
+            event.preventDefault(); // Prevent default form submission
+    
+            // Ensure all required dropdowns are selected
+            if (!bottleOffer.value || !bottlePrice.value || !paymentMethod.value) {
+                alert("Please select all required fields before submitting.");
+                return false;
+            }
+    
+            submitted = true;
+    
+            // Submit the form programmatically
+            this.submit();
+        };
+    
+        document.getElementById("hidden_iframe").onload = function() {
+            if (submitted) {
+                alert('Order confirmed!');
+                submitted = false;
+            }
+        };
+    </script>
+    
 
     
     
