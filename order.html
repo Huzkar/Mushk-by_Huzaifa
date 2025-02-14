@@ -15,66 +15,52 @@
         <section id="order-section">
             <h2>Complete Your Order</h2>
             <form id="custom-form" action="https://docs.google.com/forms/d/e/17VX1yfonqBQ1ruIyrUq6HFmRdopiOVB9o-bfGnYP0iY/formResponse" method="POST" target="hidden_iframe">
-                <!-- Your Name -->
                 <label for="userName">Your Name:</label>
                 <input type="text" id="userName" name="entry.1110349223" placeholder="Enter your name" required>
-            
-                <!-- Your Address -->
+
                 <label for="address">Your Address:</label>
                 <textarea id="address" name="entry.1317313478" placeholder="Enter your address" rows="3" required></textarea>
-            
-                <!-- Mobile Number -->
+
                 <label for="mobile">Mobile Number:</label>
                 <input type="number" id="mobile" name="entry.1854760355" placeholder="Enter your mobile number" required>
-            
-                <!-- Product Name (Disabled for user, but still submitted) -->
+
                 <label for="productName">Product Name:</label>
-                <input type="text" id="productName" disabled>
-                <input type="hidden" name="entry.269780076" id="hiddenProductName">
-            
-                <!-- Stylish Bottle -->
+                <input type="text" id="productName" name="entry.269780076" readonly>
+
                 <label for="bottleOffer">Stylish Bottle:</label>
                 <select id="bottleOffer" name="entry.506509292">
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-            
-                <!-- Stylish Bottle Price -->
+
                 <label for="bottlePrice">Stylish Bottle Price:</label>
                 <select id="bottlePrice" name="entry.1710796685">
-                    <option value="3ml">3ml(130 Rs)</option>
+                    <option value="3ml">3ml (130 Rs)</option>
                     <option value="6ml">6ml (180 Rs)</option>
                     <option value="12ml">12ml (230 Rs)</option>
                 </select>
-            
-                <!-- Price (Disabled for user, but still submitted) -->
+
                 <label for="price">Price (Rs):</label>
-                <input type="number" id="price" disabled>
-                <input type="hidden" name="entry.2133492647" id="hiddenPrice">
-            
-                <!-- Quantity -->
+                <input type="number" id="price" name="entry.2133492647" readonly>
+
                 <label for="quantity">Quantity:</label>
                 <input type="number" id="quantity" name="entry.171744850" min="1" value="1" required>
-            
-                <!-- Total Price (Disabled for user, but still submitted) -->
+
                 <label for="totalPrice">Total Price (Rs):</label>
-                <input type="number" id="totalPrice" disabled>
-                <input type="hidden" name="entry.1229946366" id="hiddenTotalPrice">
-            
-                <!-- Order Date -->
+                <input type="number" id="totalPrice" name="entry.1229946366" readonly>
+
                 <label for="orderDate">Order Date:</label>
                 <input type="date" id="orderDate" name="entry.1580478863" required>
-            
-                <!-- Payment Method -->
+
                 <label for="paymentMethod">Payment Method:</label>
                 <select id="paymentMethod" name="entry.175859627">
                     <option value="online">Online payment</option>
                     <option value="ondelivery">Payment on delivery</option>
                 </select>
-            
+
                 <button type="submit">Submit</button>
             </form>
-            
+
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </section>
     </main>
@@ -84,44 +70,39 @@
     </footer>
 
     <script>
-        let submitted = false;
+        let submitted = false; // Declare globally
 
         // Extract URL parameters and prefill the form
         const params = new URLSearchParams(window.location.search);
-        const productName = params.get('product') || "Unknown Product";
-        const price = parseFloat(params.get('price')) || 0;
+        const productName = params.get('product');
+        const price = params.get('price');
 
-        // Prefill product details
-        document.getElementById('productName').value = productName;
-        document.getElementById('hiddenProductName').value = productName;
-        document.getElementById('price').value = price;
-        document.getElementById('hiddenPrice').value = price;
+        document.getElementById('productName').value = productName || "N/A";
+        document.getElementById('price').value = price || "0";
 
         const quantityInput = document.getElementById('quantity');
         const totalPriceInput = document.getElementById('totalPrice');
-        const hiddenTotalPrice = document.getElementById('hiddenTotalPrice');
 
-        // Calculate and update total price
+        // Calculate total price
         function updateTotalPrice() {
             const quantity = parseInt(quantityInput.value, 10) || 1;
-            const total = quantity * price;
-            totalPriceInput.value = total;
-            hiddenTotalPrice.value = total;
+            totalPriceInput.value = quantity * parseFloat(price || "0");
         }
 
         quantityInput.addEventListener('input', updateTotalPrice);
         updateTotalPrice();
 
-        // Confirmation alert after form submission
-        document.getElementById('custom-form').addEventListener('submit', function() {
+        // Handle form submission properly
+        document.getElementById("custom-form").onsubmit = function() {
             submitted = true;
-            setTimeout(() => {
-                if (submitted) {
-                    alert('Order confirmed!');
-                    submitted = false;
-                }
-            }, 2000);
-        });
+        };
+
+        document.getElementById("hidden_iframe").onload = function() {
+            if (submitted) {
+                alert('Order confirmed!');
+                submitted = false;
+            }
+        };
     </script>
 </body>
 </html>
