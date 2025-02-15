@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Details</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #showbottleprice{
+            display: none;
+            
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,20 +37,21 @@
 
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="entry.269780076" readonly>
-
+                
                 <label for="bottleOffer">Stylish Bottle:</label>
-                <select id="bottleOffer" name="entry.506509292">
-                    <option value="yes">Yes</option>
+                <select id="bottleOffer"  onchange="showbottlepricefun()" name="entry.506509292">
                     <option value="no">No</option>
+                    <option value="yes">Yes</option>
                 </select>
-
+                <div id="showbottleprice">
                 <label for="bottlePrice">Stylish Bottle Price:</label>
                 <select id="bottlePrice" name="entry.1710796685">
+                    <option value="empty">empty</option>
                     <option value="3ml(130 Rs)">3ml (130 Rs)</option>
                     <option value="6ml(180 Rs)">6ml (180 Rs)</option>
                     <option value="12ml(230 Rs)">12ml (230 Rs)</option>
                 </select>
-
+                </div>
                 <label for="price">Price (Rs):</label>
                 <input type="number" id="price" name="entry.2133492647" readonly>
 
@@ -110,6 +117,15 @@ function updateTotalPrice() {
 
 quantityInput.addEventListener('input', updateTotalPrice);
 updateTotalPrice();
+function showbottlepricefun(){
+    var needbottle = document.getElementById('bottleOffer').value;
+    var bottleprice = document.getElementById('showbottleprice');
+    if(needbottle === 'yes'){
+        bottleprice.style.display = 'block';
+    } else {
+        bottleprice.style.display = 'none';
+    }
+}
 
 // Handle form submission properly
 document.getElementById("custom-form").onsubmit = function(event) {
