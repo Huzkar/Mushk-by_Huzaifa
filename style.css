@@ -28,8 +28,6 @@ body {
         opacity: 1;
     }
 }
-
-/* Header Styling */
 header {
     background: linear-gradient(45deg, #fff, #e0e0e0);
     color: #333;
@@ -113,6 +111,8 @@ header nav ul li a:hover {
     text-decoration: underline;
 }
 
+    
+
 /* Main Content Styling */
 main {
     margin: 20px auto;
@@ -176,6 +176,43 @@ main {
     background-color: #ff5a4b;
     transform: scale(1.1);
 }
+/* quality section for styling achor or premium and good qulatiy produc */
+.qualitysection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Adjusts space between anchor tags */
+}
+
+.qualitysection-a {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-align: center;
+    background: #2f2f2f; /* Gray background */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 5px #fff, 0 0 10px #c0c0c0, 0 0 20px #c0c0c0, 0 0 30px #c0c0c0; /* Silver-gray neon light effect */
+}
+
+.qualitysection-a:hover {
+    background: #3f3f3f; /* Darker gray on hover */
+    box-shadow: 0 0 10px #fff, 0 0 20px #c0c0c0, 0 0 40px #c0c0c0, 0 0 60px #c0c0c0; /* Enhanced silver-gray neon light effect on hover */
+}
+
+/* Mobile view (width 100%) */
+@media (max-width: 768px) {
+    .qualitysection-a {
+        width: 100%;
+    }
+}
+
+/* Desktop view (centered, width auto) */
+@media (min-width: 769px) {
+    .qualitysection-a {
+        width: auto;
+    }
+}
 
 /* Section Styling */
 section {
@@ -225,23 +262,48 @@ section {
     margin: 10px 0;
     color: #333;
 }
-
 .product button {
-    background: #ff6f61;
+    background: linear-gradient(135deg, #6a1b9a, #8e24aa); /* Purple gradient */
     color: #fff;
     border: none;
-    padding: 10px 15px;
-    font-size: 1em;
+    padding: 12px 25px;
+    font-size: 1.1em;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s, transform 0.2s;
+    border-radius: 30px; /* Fully rounded edges */
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3); /* Soft shadow */
+    transition: all 0.4s ease;
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1.5px; /* Spacing between letters */
+    position: relative;
+    overflow: hidden;
+}
+
+.product button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4)); /* Shiny overlay */
+    transition: left 0.5s ease;
 }
 
 .product button:hover {
-    background: #ff5a4b;
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #8e24aa, #6a1b9a); /* Reverse gradient on hover */
+    box-shadow: 0 6px 20px rgba(106, 27, 154, 0.5); /* Enhanced shadow */
+    transform: translateY(-3px); /* Slight lift */
 }
 
+.product button:hover::before {
+    left: 100%; /* Move the shiny overlay across the button */
+}
+
+.product button:active {
+    transform: translateY(0); /* Reset lift on click */
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3); /* Reset shadow */
+}
 /* About Us Section Styling */
 .about-us-container {
     max-width: 800px;
@@ -276,23 +338,71 @@ section {
 footer {
     text-align: center;
     margin-top: 20px;
-    padding: 10px;
-    background: linear-gradient(45deg, #fff, #e0e0e0);
-    color: #333;
+    padding: 20px;
+    background: linear-gradient(45deg, #2f2f2f, #3f3f3f);
+    color: #fff;
     border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-footer p {
+.footer-section {
+    margin: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+    color:#85db3a; /* Different color for headings */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
     margin: 5px 0;
 }
 
-footer a {
-    color: #555;
+.footer-section ul li a {
+    color: #bbb;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-footer a:hover {
-    color: #333;
+.footer-section ul li a:hover {
+    color: #fff;
 }
+
+.social-media {
+    display: flex;
+    justify-content: center;
+}
+
+.social-media li {
+    margin: 0 15px; /* Increases space between icons */
+}
+
+.social-media li a {
+    color: #bbb;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-media li a:hover {
+    color: #fff;
+}
+
+footer p {
+    margin: 20px 0 0;
+    width: 100%;
+    color: #ccc;
+}
+.footer-a{
+    margin: 10px;
+}
+
