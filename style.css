@@ -248,7 +248,7 @@ section {
     animation: fadeIn 1.5s;
 }
 
-.product-categories {
+.product-catagories{
     text-align: center;
     font-size: 20px;
     margin-bottom: 15px;
@@ -262,6 +262,7 @@ section {
     margin: 10px 0;
     color: #333;
 }
+/* button section */
 .product button {
     background: linear-gradient(135deg, #6a1b9a, #8e24aa); /* Purple gradient */
     color: #fff;
