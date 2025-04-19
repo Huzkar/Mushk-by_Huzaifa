@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mushk-by_Huzaifa Fragrance Store</title>
     
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="newstyle.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +16,7 @@
 
 <body>
     <header>
-        <div class="header-content"> <img class="logo" src="img/imgg2.jpg" alt="logo of website">
+        <div class="header-content"> <img class="logo" src="img/logo (2).jpg" alt="logo of website">
             <h1 class="header-h1">Mushk by Huzaifa</h1>
         </div>
         <nav>
@@ -30,9 +31,7 @@
     <main>
         <section id="intro">
             <div class="intro-content">
-                <!-- <h2>Welcome to Mushk-by_Huzaifa Fragrance Store</h2> -->
-                <!-- <p>Explore a world of premium fragrances crafted just for you. Find your perfect scent today and
-                    experience luxury with every spray!</p> -->
+               
                 <button onclick="window.location.href='#products'">Shop Now</button>
             </div>
         </section>
@@ -42,130 +41,23 @@
             <a class="qualitysection-a" href="#good-product">Good Product</a>
         </div>
 
-        <section id="products">
+       
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search perfumes..." />
+          </div>
+          
+          <section id="products">
             <section id="premium-product">
-                <h2 class="product-catagories">Premium Products</h2>
-                <div class="product-list">
-                    <!-- Product items will go here -->
-                    <div class="product">
-                        <img src="img/premium/prd1.webp" alt="Fragrance 1">
-                        <h3>White oud</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('White oud', 1000)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/prd2.jpg" alt="Fragrance 2">
-                        <h3>oud-e-junaid</h3>
-                        <p>Price: Rs nil</p>
-                        <button onclick="redirectToOrderPage('oud-e-junaid', 1500)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/prd3.webp" alt="Fragrance 2">
-                        <h3>oud-ul-asal</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('oud-ul-asal', 800)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/Hararee Perfume bottle design with the name Hararee prominently displayed.png"
-                            alt="Fragrance 2">
-                        <h3>Harare</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Harare', 1200)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/pdr5.webp" alt="Fragrance 2">
-                        <h3>Ameer-ul-oud</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Ameer-ul-oud', 3500)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/prd6.png" alt="Fragrance 1">
-                        <h3>Krigler elegentez</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Krigler elegentez', 1000)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/Romantic Perfume with the name prominently displayed.png"
-                            alt="Fragrance 1">
-                        <h3>Krigler elegentez</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Krigler elegentez', 1000)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/Romantic Perfume with the name prominently displayed.png"
-                            alt="Fragrance 1">
-                        <h3>Krigler elegentez</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Krigler elegentez', 1000)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/premium/Romantic Perfume with the name prominently displayed.png"
-                            alt="Fragrance 1">
-                        <h3>Krigler elegentez</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Krigler elegentez', 1000)">Order Now</button>
-
-                    </div>
-                </div>
+              <h2 class="product-catagories">Premium Products</h2>
+              <div class="product-list" id="premiumList"></div>
             </section>
+          
             <section id="good-product">
-                <h2 class="product-catagories">Good Quality</h2>
-                <div class="product-list">
-                    <!-- Product items will go here -->
-                    <div class="product">
-                        <img src="img/img3.jpg" alt="Fragrance 1">
-                        <h3>Krigler elegentez</h3>
-                        <p>Price: Rs nill</p>
-                        <button onclick="redirectToOrderPage('Krigler elegentez', 1000)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/img3.jpg" alt="Fragrance 2">
-                        <h3>Fragrance 2</h3>
-                        <p>Price: Rs 1500</p>
-                        <button onclick="redirectToOrderPage('Fragrance 2', 1500)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/img3.jpg" alt="Fragrance 2">
-                        <h3>Fragrance 3</h3>
-                        <p>Price: Rs 800</p>
-                        <button onclick="redirectToOrderPage('Fragrance 3', 800)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/img5.jpg" alt="Fragrance 2">
-                        <h3>Fragrance 4</h3>
-                        <p>Price: Rs 1200</p>
-                        <button onclick="redirectToOrderPage('Fragrance 4', 1200)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/img5.jpg" alt="Fragrance 2">
-                        <h3>Fragrance 5</h3>
-                        <p>Price: Rs 3500</p>
-                        <button onclick="redirectToOrderPage('Fragrance 5', 3500)">Order Now</button>
-
-                    </div>
-                    <div class="product">
-                        <img src="img/img5.jpg" alt="Fragrance 2">
-                        <h3>Fragrance 2</h3>
-                        <p>Price: Rs 1500</p>
-                        <button onclick="redirectToOrderPage('Fragrance 1', 1000)">Order Now</button>
-
-                    </div>
-                </div>
+              <h2 class="product-catagories">Good Quality</h2>
+              <div class="product-list" id="goodList"></div>
             </section>
-        </section>
-
+          </section>
+          
         <section id="about">
             <div class="about-us-container">
                 <h1>About Us</h1>
@@ -230,7 +122,7 @@
     </footer>
 
 
-
+    <script src="addpro.js"></script>
     <script src="script.js"></script>
 </body>
 
