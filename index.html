@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mushk-by_Huzaifah Fragrance Store</title>
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="newstyle.css">
 
@@ -31,7 +31,7 @@
     <main>
         <section id="intro">
             <div class="intro-content">
-               
+
                 <button onclick="window.location.href='#products'">Shop Now</button>
             </div>
         </section>
@@ -41,33 +41,49 @@
             <a class="qualitysection-a" href="#good-product">Good Product</a>
         </div>
 
-       
+
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search perfumes..." />
-          </div>
-          
-          <section id="products">
-            <section id="premium-product">
-              <h2 class="product-catagories">Premium Products</h2>
-              <div class="product-list" id="premiumList"></div>
-            </section>
-          
-            <section id="good-product">
-              <h2 class="product-catagories">Good Quality</h2>
-              <div class="product-list" id="goodList"></div>
-            </section>
+        </div>
+
+        <section id="premium-product">
+            <h2 class="product-catagories">Premium Products</h2>
+            <div class="product-container">
+              <button class="scroll-button left premium">⮜</button>
+              <div class="product-list" id="premiumList">
+                <!-- product cards -->
+              </div>
+              <button class="scroll-button right premium">⮞</button>
+            </div>
+            <button class="view-more-btn" data-target="premiumList">View More</button>
           </section>
           
+          <section id="good-product">
+            <h2 class="product-catagories">Good Quality</h2>
+            <div class="product-container">
+              <button class="scroll-button left good">⮜</button>
+              <div class="product-list" id="goodList">
+                <!-- product cards -->
+              </div>
+              <button class="scroll-button right good">⮞</button>
+            </div>
+            <button class="view-more-btn" data-target="goodList">View More</button>
+          </section>
+          
+        </section>
+
         <section id="about">
             <div class="about-us-container">
                 <h1>About Us</h1>
                 <p>
-                    Welcome to <strong>Mushk-by_Huzaifah - Fragrance Store</strong>, your one-stop destination for premium
+                    Welcome to <strong>Mushk-by_Huzaifah - Fragrance Store</strong>, your one-stop destination for
+                    premium
                     fragrances. We are committed to providing the finest scents that resonate with your personality and
                     style.
                 </p>
                 <p>
-                    At Mushk-by_Huzaifah, we believe that every fragrance tells a story. Our curated collection is designed to
+                    At Mushk-by_Huzaifah, we believe that every fragrance tells a story. Our curated collection is
+                    designed to
                     cater to diverse tastes, ensuring there is something for everyone. We source only high-quality
                     ingredients to craft scents that last.
                 </p>
@@ -113,9 +129,12 @@
         <div class="footer-section">
             <h3>Follow Us</h3>
             <ul class="social-media">
-                <li><a class="footer-a"   href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a class="footer-a"  href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li><a class="footer-a"  href="https://www.whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a class="footer-a" href="https://www.facebook.com" target="_blank"><i
+                            class="fab fa-facebook"></i></a></li>
+                <li><a class="footer-a" href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a></li>
+                <li><a class="footer-a" href="https://www.whatsapp.com" target="_blank"><i
+                            class="fab fa-whatsapp"></i></a></li>
             </ul>
         </div>
         <p>&copy; 2025 Mushk-by_Huzaifah Fragrance Store. All rights reserved.</p>

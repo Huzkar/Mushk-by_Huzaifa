@@ -5,6 +5,8 @@
     { name: "oud-ul-asal", price: "nill", img: "img/premium/prd3.webp" },
     { name: "Harare", price: "nill", img: "img/premium/prd3.webp" },
     { name: "Ameer-ul-oud", price: "nill", img: "img/premium/pdr5.webp" },
+    { name: "Ameer-ul-oud", price: "nill", img: "img/premium/pdr5.webp" },
+    { name: "Ameer-ul-oud", price: "nill", img: "img/premium/pdr5.webp" },
     { name: "Krigler elegentez", price: "nill", img: "img/premium/prd6.png" }
   ];
 
@@ -12,6 +14,8 @@
     { name: "Krigler elegentez", price: "nill", img: "img/img3.jpg" },
     { name: "Fragrance 2", price: 1500, img: "img/img3.jpg" },
     { name: "Fragrance 3", price: 800, img: "img/img3.jpg" },
+    { name: "Fragrance 4", price: 1200, img: "img/img5.jpg" },
+    { name: "Fragrance 4", price: 1200, img: "img/img5.jpg" },
     { name: "Fragrance 4", price: 1200, img: "img/img5.jpg" },
     { name: "Fragrance 5", price: 3500, img: "img/img5.jpg" }
   ];
