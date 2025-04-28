@@ -75,6 +75,26 @@
 .product button:hover {
   background-color: #fff;
 }
+/*  add a price dropdown*/
+.price-dropdown {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 25px;
+  background-color: #1c1c1c;
+  border: 1px solid #2b2b2b;
+  color: #ccc;
+  font-weight: bold;
+  text-align: center;
+  appearance: none;
+  outline: none;
+}
+
+.price-dropdown:hover {
+  border-color: #d4af37;
+}
+
+
 
 /* Hide default scrollbar */
 .product-list {
