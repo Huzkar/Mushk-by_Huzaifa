@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f1f1f1;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1f2937;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #374151;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .admin-panel {
+      display: none;
+    }
+    .feature {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.feature i {
+  font-size: 24px;
+  color: #4a90e2;
+  margin-top: 5px;
+}
+
+.feature span {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.feature p {
+  margin: 5px 0 0;
+  color: #555;
+}
+
+    .logout-btn {
+      background-color: #dc2626;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b91c1c;
+    }
+    .go-link {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 4px 10px;
+  background-color: #444;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.go-link:hover {
+  background-color: #666;
+}
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Admin Control Panel</header>
+
+  <div class="container" id="login-box">
+    <h2>Admin Login</h2>
+    <div class="error" id="error-msg"></div>
+    <input type="password" id="password" placeholder="Enter admin password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div class="container admin-panel" id="admin-box">
+    <h2>Welcome, Admin</h2>
+    <div class="feature">
+        <i class="fas fa-store"></i>
+        <span>Fragrance Catagory</span>
+        <p>
+          View all the products offered on the website,
+          including perfumes,  and Itars.
+          <a class="go-link" href="list.html">Go →</a>
+        </p>
+      </div>
+      
+      
+      <div class="feature">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Manual Sales Tracker</span>
+        <p>Keep a local record of daily sales entered manually. This helps track trends and top-selling items.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-info-circle"></i>
+        <span>About This Website</span>
+        <p>This website offers premium fragrances. Users can browse products, check details, and contact support.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-envelope"></i>
+        <span>Contact Submissions</span>
+        <p>Users can send messages through the Contact Us form. (No database, so messages are not stored here.)</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-star"></i>
+        <span>Customer Feedback</span>
+        <p>Admins can view mock feedback entries added manually or simulated using local data.</p>
+      </div>
+      
+      <div class="feature">
+        <i class="fas fa-cogs"></i>
+        <span>Admin Guidelines</span>
+        <p>This panel is for internal use to manage content, manually track sales, and monitor general activity.</p>
+      </div>
+      
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const PASSWORD = 'admin205';
+
+    function login() {
+      const inputPassword = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error-msg');
+      if (inputPassword === PASSWORD) {
+        document.getElementById('login-box').style.display = 'none';
+        document.getElementById('admin-box').style.display = 'block';
+        errorMsg.innerText = '';
+      } else {
+        errorMsg.innerText = 'Incorrect password. Try again.';
+      }
+    }
+
+    function logout() {
+      document.getElementById('admin-box').style.display = 'none';
+      document.getElementById('login-box').style.display = 'block';
+      document.getElementById('password').value = '';
+    }
+  </script>
+
+</body>
+</html>
