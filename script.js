@@ -37,7 +37,8 @@ function setupScrollButtons(listId, leftBtnClass, rightBtnClass) {
 
 // Setup scroll buttons for both product sections
 setupScrollButtons('premiumList', '.scroll-button.left.premium', '.scroll-button.right.premium');
-setupScrollButtons('goodList', '.scroll-button.left.good', '.scroll-button.right.good');
+setupScrollButtons('classicList', '.scroll-button.left.classic', '.scroll-button.right.classic');
+setupScrollButtons('casualList', '.scroll-button.left.casual', '.scroll-button.right.casual');
 
 // Mobile "View More" button logic
 document.querySelectorAll('.view-more-btn').forEach(btn => {
@@ -62,5 +63,19 @@ function applyMobileHiddenClass() {
         goodList.classList.remove('hidden');
     }
 }
+function applyMobileHiddenClass() {
+    const listIds = ['premiumList', 'classicList', 'casualList'];
+    listIds.forEach(id => {
+        const list = document.getElementById(id);
+        if (!list) return;
+
+        if (window.innerWidth <= 768) {
+            list.classList.add('hidden');
+        } else {
+            list.classList.remove('hidden');
+        }
+    });
+}
+
 applyMobileHiddenClass();
 window.addEventListener('resize', applyMobileHiddenClass);

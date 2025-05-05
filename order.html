@@ -61,13 +61,18 @@
 
                 <label for="orderDate">Order Date:</label>
                 <input type="date" id="orderDate" name="entry.1580478863" required>
-
+                
                 <label for="paymentMethod">Payment Method:</label>
-                <select id="paymentMethod" name="entry.175859627">
+                <select id="paymentMethod"  onchange="showmobilenumber()" name="entry.175859627">
+                    <option value="atdelevery">Payment on delivery</option>
                     <option value="online">Online payment</option>
-                    <option value="ondelivery">Payment on delivery</option>
                 </select>
+                <div id="onlinepaymentnumber">
 
+                    <h5 style="color: black; font-size: 15px;" >Easypaisa & Jazzcash at</h5>
+                    <h5 style="color: black; font-size: 15px;" >+923334344513</h5>
+
+                </div>
                 <button type="submit">Submit</button>
             </form>
             <div id="confirmation-message" style="display: none; text-align: center; margin-top: 20px;">
@@ -115,6 +120,7 @@ function updateTotalPrice() {
 
 quantityInput.addEventListener('input', updateTotalPrice);
 updateTotalPrice();
+
 function showbottlepricefun(){
     var needbottle = document.getElementById('bottleOffer').value;
     var bottleprice = document.getElementById('showbottleprice');
@@ -124,6 +130,16 @@ function showbottlepricefun(){
         bottleprice.style.display = 'none';
     }
 }
+function showmobilenumber(){
+    var paymentMethod = document.getElementById('paymentMethod').value;
+    var numbershow = document.getElementById('onlinepaymentnumber');
+    if(paymentMethod == 'online' ){
+        numbershow.style.display = 'block';
+    }else{
+        numbershow.style.display = 'none';
+    }
+}
+
 
 function calculateSum(){
     let num1 = document.getElementById('bottlePrice').value;

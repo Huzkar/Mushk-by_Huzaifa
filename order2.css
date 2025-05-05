@@ -65,6 +65,9 @@ form button:hover {
 #showbottleprice {
     display: none;
 }
+#onlinepaymentnumber{
+    display: none;
+}
 .headcenter{
     text-align: center;
 }

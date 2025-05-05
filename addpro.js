@@ -3,13 +3,13 @@ const premiumProducts = [
 
   { name: "oud aromatic",        price3ml: 700, price6ml: 1200, price12ml: 2200, img: "img/premium/oudaro.jpeg" },
   { name: "silk musk",        price3ml: 700, price6ml: 1150, price12ml: 2100, img: "img/premium/silkmusk.jpeg" },
-  { name: "musk-al-huid",        price3ml:750 , price6ml: 1500, price12ml: 3000, img: "img/premium/muskalhuid.png" },
+  { name: "musk-ul-hind S",        price3ml:750 , price6ml: 1500, price12ml: 3000, img: "img/premium/muskulhind.jpg" },
   { name: "Ameer-ul-oud",     price3ml: 270, price6ml: 550, price12ml: 1000, img: "img/premium/Ameer-ul-oud.jpeg" },
   { name: "jannan",        price3ml:250 , price6ml: 500, price12ml: 900, img: "img/premium/jannan.jpeg" },
   { name: "versache pink",        price3ml:250 , price6ml: 500, price12ml: 900, img: "img/premium/versace.jpeg" },
   { name: "oud-e-junaid",     price3ml: 260, price6ml: 520, price12ml: 950, img: "img/premium/oud-e-junaid.jpeg" },
   { name: "purple oud",        price3ml:300 , price6ml: 600, price12ml: 1200, img: "img/premium/purpleoud.jpeg" },
-  { name: "musk-al-huid",        price3ml:450 , price6ml: 900, price12ml: 1700, img: "img/premium/muskalhuid.png" },
+  { name: "musk-ul-hind ",        price3ml:450 , price6ml: 900, price12ml: 1700, img: "img/premium/muskalhuid.png" },
   { name: "Bom Shell",        price3ml:230 , price6ml: 450, price12ml: 850, img: "img/premium/bomshell.png" },
   { name: "Armani Mania",        price3ml:250 , price6ml: 500, price12ml: 1000, img: "img/premium/armani.png" },
   { name: "Vanila 28",        price3ml:300 , price6ml: 600, price12ml: 1200, img: "img/premium/vanila.jpeg" },
@@ -23,28 +23,22 @@ const premiumProducts = [
   // { name: "Ameer-ul-oud",     price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n5.jpeg" },
   // { name: "Krigler elegentez",price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n6.jpeg" }
 ];
-
-const goodProducts = [
-  
-  { name: "Husne Yousaf",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/husneyousaf.jpeg" },
-  { name: "Gucci Rush",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/gucchirash.jpeg" },
-  { name: "Ghulaf-e-Kaaba",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Ghulaf-e-Kaaba.jpeg" },
-  { name: "Nostrademis(N)",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/nostrademis.png" },
-  { name: "Formatia",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Formatia.png" },
-  { name: "Sabaya",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/sabaya.jpeg" },
-  { name: "Havoe",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Havoe.png" },
-
-
-
-  // { name: "Krigler elegentez", price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n11.jpeg" },
-  // { name: "Fragrance 2",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n12.jpeg" },
-  // { name: "Fragrance 3",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n13.jpeg" },
-  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n14.jpeg" },
-  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n15.jpeg" },
-  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n16.jpeg" },
-  // { name: "Fragrance 5",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n17.jpeg" }
-
+const classicProducts = [
+  { name: "Husne Yousaf", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/husneyousaf.jpeg" },
+  { name: "Gucci Rush", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/gucchirash.jpeg" },
+  { name: "Ghulaf-e-Kaaba", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/Ghulaf-e-Kaaba.jpeg" },
+  { name: "Nostrademis(N)", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/nostrademis.png" },
+  { name: "Formation", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/Formatia.png" },
+  { name: "Sabaya", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/sabaya.jpeg" },
+  { name: "Havoc", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/Havoe.png" },
 ];
+const casualProducts = [
+  { name: "Formation", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/Formatia.png" },
+  { name: "Sabaya", price3ml: 160, price6ml: 330, price12ml: 600, img: "img/classic/sabaya.jpeg" },
+  
+];
+
+
 
 function createProductCard(product) {
   return `
@@ -73,18 +67,23 @@ function redirectToOrderPageWithDropdown(productName) {
 }
 
 
+
 function renderProducts() {
   const query = document.getElementById("searchInput").value.toLowerCase();
 
   const filteredPremium = premiumProducts.filter(p => p.name.toLowerCase().includes(query));
-  const filteredGood = goodProducts.filter(p => p.name.toLowerCase().includes(query));
+  const filteredClassic = classicProducts.filter(p => p.name.toLowerCase().includes(query));
+  const filteredCasual = casualProducts.filter(p => p.name.toLowerCase().includes(query));
 
   document.getElementById("premiumList").innerHTML = filteredPremium.map(createProductCard).join("");
-  document.getElementById("goodList").innerHTML = filteredGood.map(createProductCard).join("");
+  document.getElementById("classicList").innerHTML = filteredClassic.map(createProductCard).join("");
+  document.getElementById("casualList").innerHTML = filteredCasual.map(createProductCard).join("");
 }
+
 
 document.getElementById("searchInput").addEventListener("input", renderProducts);
 
 // Initial rendering
 renderProducts();
+
 

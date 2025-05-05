@@ -1,4 +1,10 @@
  https://huzkar.github.io/Mushk-by_Huzaifa/
+Premium
+
+Classic
+
+Casual
+
 
  addpro.js pagee 
  
@@ -48,4 +54,247 @@
 
   // Initial rendering
   renderProducts();
+
+**************************************************************
+index.html date saturday 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushk-by_Huzaifah </title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="newstyle.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <div class="header-content"> <img class="logo" src="img/logo/logo.jpg" alt="logo of website">
+            <h1 class="header-h1">Mushk by Huzaifah</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#products">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro">
+            <div class="intro-content">
+
+                <button onclick="window.location.href='#products'">Shop Now</button>
+            </div>
+        </section>
+        <div class="qualitysection">
+            <h2>Quality Section</h2>
+            <a class="qualitysection-a" href="#premium-product">Premium Product</a>
+            <a class="qualitysection-a" href="#good-product">Good Product</a>
+        </div>
+
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search perfumes..." />
+        </div>
+
+        <section id="premium-product">
+            <h2 class="product-catagories">Premium Products</h2>
+            <div class="product-container">
+              <button class="scroll-button left premium">⮜</button>
+              <div class="product-list" id="premiumList">
+                <!-- product cards -->
+              </div>
+              <button class="scroll-button right premium">⮞</button>
+            </div>
+            <button class="view-more-btn" data-target="premiumList">⮟</button>
+        </section>
+        <hr>
+          
+          <section id="good-product">
+            <h2 class="product-catagories">Good Quality</h2>
+            <div class="product-container">
+              <button class="scroll-button left good">⮜</button>
+              <div class="product-list" id="goodList">
+                <!-- product cards -->
+              </div>
+              <button class="scroll-button right good">⮞</button>
+            </div>
+            <button class="view-more-btn" data-target="goodList">⮟</button>
+          </section>
+          <hr>
+        </section>
+
+        <section id="about">
+            <div class="about-us-container">
+                <h1>About Us</h1>
+                <p>
+                    Welcome to <strong>Mushk-by_Huzaifah - Fragrance Store</strong>, your one-stop destination for
+                    premium
+                    fragrances. We are committed to providing the finest scents that resonate with your personality and
+                    style.
+                </p>
+                <p>
+                    At Mushk-by_Huzaifah, we believe that every fragrance tells a story. Our curated collection is
+                    designed to
+                    cater to diverse tastes, ensuring there is something for everyone. We source only high-quality
+                    ingredients to craft scents that last.
+                </p>
+                <p>
+                    Thank you for choosing us. We look forward to being part of your journey in finding the perfect
+                    fragrance.
+                </p>
+            </div>
+
+        </section>
+
+
+    </main>
+        
+    <footer>
+        <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+                <li><a href="footerlink/terms.html">Terms and Conditions</a></li>
+                <li><a href="footerlink/return-exchange.html">Return & Exchange</a></li>
+                <li><a href="footerlink/privacy.html">Privacy Policy</a></li>
+                <li><a href="footerlink/shipping.html">Shipping Information</a></li>
+                <li><a href="footerlink/faq.html">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Exclusive Collection</h3>
+            <ul>
+                <li><a href="#">Own Creation</a></li>
+                <li><a href="#">Attars Collection</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#">Track Orders</a></li>
+                <li><a href="#">Corporate Orders</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <ul class="social-media">
+                <li><a class="footer-a" href="https://wa.me/+923334344513" target="_blank"><i
+                            class="fab fa-facebook"></i></a></li>
+                <li><a class="footer-a" href="https://www.instagram.com" target="_blank"><i
+                            class="fab fa-instagram"></i></a></li>
+                <li><a class="footer-a" href="https://www.whatsapp.com" target="_blank"><i
+                            class="fab fa-whatsapp"></i></a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025 Mushk-by_Huzaifah Fragrance Store. All rights reserved.</p>
+    </footer>
+
+
+    <script src="addpro.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+*************************************************************
+addpro.js date saturday 
+
+const premiumProducts = [
+
+  { name: "oud aromatic",        price3ml: 700, price6ml: 1200, price12ml: 2200, img: "img/premium/oudaro.jpeg" },
+  { name: "silk musk",        price3ml: 700, price6ml: 1150, price12ml: 2100, img: "img/premium/silkmusk.jpeg" },
+  { name: "musk-ul-hind S",        price3ml:750 , price6ml: 1500, price12ml: 3000, img: "img/premium/muskalhuid.png" },
+  { name: "Ameer-ul-oud",     price3ml: 270, price6ml: 550, price12ml: 1000, img: "img/premium/Ameer-ul-oud.jpeg" },
+  { name: "jannan",        price3ml:250 , price6ml: 500, price12ml: 900, img: "img/premium/jannan.jpeg" },
+  { name: "versache pink",        price3ml:250 , price6ml: 500, price12ml: 900, img: "img/premium/versace.jpeg" },
+  { name: "oud-e-junaid",     price3ml: 260, price6ml: 520, price12ml: 950, img: "img/premium/oud-e-junaid.jpeg" },
+  { name: "purple oud",        price3ml:300 , price6ml: 600, price12ml: 1200, img: "img/premium/purpleoud.jpeg" },
+  { name: "musk-ul-hind ",        price3ml:450 , price6ml: 900, price12ml: 1700, img: "img/premium/muskalhuid.png" },
+  { name: "Bom Shell",        price3ml:230 , price6ml: 450, price12ml: 850, img: "img/premium/bomshell.png" },
+  { name: "Armani Mania",        price3ml:250 , price6ml: 500, price12ml: 1000, img: "img/premium/armani.png" },
+  { name: "Vanila 28",        price3ml:300 , price6ml: 600, price12ml: 1200, img: "img/premium/vanila.jpeg" },
+  { name: "Urba pura",        price3ml:250 , price6ml: 500, price12ml: 900, img: "img/premium/urbapura.png" },
+
+
+  // { name: "White oud",        price3ml: 300, price6ml: 600, price12ml: 1200, img: "img/premium/whiteoud.jpeg" },
+  // { name: "Harare",           price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/Harare.jpeg" },
+  // { name: "oud-ul-asal",      price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n1.jpeg" },
+  // { name: "Ameer-ul-oud",     price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n4.jpeg" },
+  // { name: "Ameer-ul-oud",     price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n5.jpeg" },
+  // { name: "Krigler elegentez",price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/premium/n6.jpeg" }
+];
+
+const goodProducts = [
+  
+  { name: "Husne Yousaf",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/husneyousaf.jpeg" },
+  { name: "Gucci Rush",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/gucchirash.jpeg" },
+  { name: "Ghulaf-e-Kaaba",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Ghulaf-e-Kaaba.jpeg" },
+  { name: "Nostrademis(N)",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/nostrademis.png" },
+  { name: "Formation",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Formatia.png" },
+  { name: "Sabaya",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/sabaya.jpeg" },
+  { name: "Havoc",        price3ml:160 , price6ml: 330, price12ml: 600, img: "img/good/Havoe.png" },
+
+
+
+  // { name: "Krigler elegentez", price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n11.jpeg" },
+  // { name: "Fragrance 2",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n12.jpeg" },
+  // { name: "Fragrance 3",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n13.jpeg" },
+  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n14.jpeg" },
+  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n15.jpeg" },
+  // { name: "Fragrance 4",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n16.jpeg" },
+  // { name: "Fragrance 5",       price3ml: 580, price6ml: 999, price12ml: 1499, img: "img/n17.jpeg" }
+
+];
+
+function createProductCard(product) {
+  return `
+    <div class="product">
+      <img src="${product.img}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      
+      <select class="price-dropdown">
+        <option value="${product.price3ml}">3ml - Rs ${product.price3ml}</option>
+        <option value="${product.price6ml}">6ml - Rs ${product.price6ml}</option>
+        <option value="${product.price12ml}">12ml - Rs ${product.price12ml}</option>
+      </select>
+
+      <button onclick="redirectToOrderPageWithDropdown('${product.name}')">Order Now</button>
+
+    </div>
+  `;
+}
+function redirectToOrderPage(productName, price) {
+  const url = `order.html?product=${encodeURIComponent(productName)}&price=${price}`;
+  window.location.href = url;
+}
+function redirectToOrderPageWithDropdown(productName) {
+  const selectedPrice = event.target.parentElement.querySelector('.price-dropdown').value;
+  redirectToOrderPage(productName, selectedPrice);
+}
+
+
+function renderProducts() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+
+  const filteredPremium = premiumProducts.filter(p => p.name.toLowerCase().includes(query));
+  const filteredGood = goodProducts.filter(p => p.name.toLowerCase().includes(query));
+
+  document.getElementById("premiumList").innerHTML = filteredPremium.map(createProductCard).join("");
+  document.getElementById("goodList").innerHTML = filteredGood.map(createProductCard).join("");
+}
+
+document.getElementById("searchInput").addEventListener("input", renderProducts);
+
+// Initial rendering
+renderProducts();
 
